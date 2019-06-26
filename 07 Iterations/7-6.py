@@ -1,3 +1,21 @@
+Skip to content
+ 
+Search or jump toÖ
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@paalso 
+0
+0 0 paalso/learning_with_python
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Security  Insights  Settings
+learning_with_python/07 Iterations/7-6.py
+@paalso paalso Chapter 7. Exercises 5, 6
+d4335fd yesterday
+Executable File  44 lines (32 sloc)  1.27 KB
+    
 ## Chapter 7. Iteration
 ## http://openbookproject.net/thinkcs/python/english3e/iteration.html
 
@@ -5,7 +23,7 @@
 ## Exercise 6
 ## ===========
 ## Count how many words occur in a list up to and including
-##the first occurrence of the word ‚Äúsam‚Äù.
+##the first occurrence of the word ìsamî.
 
 
 import sys
