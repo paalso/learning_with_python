@@ -1,20 +1,14 @@
 ## Chapter 10. Event-Driven Programming
 ## http://openbookproject.net/thinkcs/python/english3e/events.html
 
-## Exercise 3
+## Exercise 4
 ## ===========
-# In an earlier chapter we saw two turtle methods, hideturtle and showturtle
-# that can hide or show a turtle. This suggests that we could take a different
-# approach to the traffic lights program. Add to your program above as follows:
-# draw a second housing for another set of traffic lights. Create three
-# separate turtles to represent each of the green, orange and red lights,
-# and position them appropriately within your new housing. As your state
-# changes occur, just make one of the three turtles visible at any time.
-# Once you’ve made the changes, sit back and ponder some deep thoughts:
-# you’ve now got two different ways to use turtles to simulate
-# the traffic lights, and both seem to work. Is one approach somehow
-# preferable to the other? Which one more closely resembles reality —
-# i.e. the traffic lights in your town?
+# Now that you’ve got a traffic light program with different turtles for each
+# light, perhaps the visibility / invisibility trick wasn’t such a great idea.
+# If we watch traffic lights, they turn on and off — but when they’re off
+# they are still there, perhaps just a darker color. Modify the program now so
+# that the lights don’t disappear: they are either on, or off. But when
+# they’re off, they’re still visible.
 
 import turtle
 
@@ -82,13 +76,11 @@ green_turtle.forward(50)
 
 transform_turtle(green_turtle, "circle", 3, "green")
 
-orange_turtle = make_turtle("orange", 1, "circle", 3, \
+orange_turtle = make_turtle("slategray", 1, "circle", 3, \
                             green_turtle.xcor(), green_turtle.ycor() + 70)
-orange_turtle.hideturtle()
 
-red_turtle = make_turtle("red", 1, "circle", 3, \
+red_turtle = make_turtle("slategray", 1, "circle", 3, \
                             green_turtle.xcor(), green_turtle.ycor() + 140)
-red_turtle.hideturtle()
 
 time = 1500
 state_1 = 0
@@ -97,6 +89,7 @@ state_2 = 0
 
 def state_machine_1():
     global state_1
+    print(f"Traffic light # 1 state: {state_1}")
     if state_1 == 2:
         tess.forward(-140)
         tess.fillcolor("green")
@@ -115,22 +108,23 @@ def state_machine_1():
 
 
 def state_machine_2():
-    global state_2
-    if state_2 == 0:
-        green_turtle.hideturtle()
-        orange_turtle.showturtle()
-        state_2 = 1
-        wn.ontimer(state_machine_2, time)
-    elif state_2 == 1:
-        orange_turtle.hideturtle()
-        red_turtle.showturtle()
-        state_2 = 2
-        wn.ontimer(state_machine_2, int(time / 3))
-    else:
-        red_turtle.hideturtle()
-        green_turtle.showturtle()
-        state_2 = 0
-        wn.ontimer(state_machine_2, time)
+   global state_2
+   print(f"Traffic light # 2 state: {state_2}")
+   if state_2 == 0:
+       green_turtle.color("slategray")
+       orange_turtle.color("orange")
+       state_2 = 1
+       wn.ontimer(state_machine_2, time)
+   elif state_2 == 1:
+       orange_turtle.color("slategray")
+       red_turtle.color("red")
+       state_2 = 2
+       wn.ontimer(state_machine_2, time)
+   else:
+       red_turtle.color("slategray")
+       green_turtle.color("green")
+       state_2 = 0
+       wn.ontimer(state_machine_2, time)
 
 
 state_machine_1()
