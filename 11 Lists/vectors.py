@@ -1,3 +1,15 @@
+import math
+
+def det2(u, v):
+    return u[0] * v[1] - u[1] * v[0]
+
+
+def det3(u, v, w):
+    return u[0] * det2(v[1:], w[1:]) \
+        - u[1] * det2((v[0], v[2]), (w[0], w[2])) \
+        + u[2] * det2(v[:2], w[:2])
+
+
 def vector_len(v):
     """ Returns vector's length """
     d = 0
@@ -45,3 +57,8 @@ def cross_product(u, v):
     u_x, u_y, u_z = u
     v_x, v_y, v_z = v
     return [u_y * v_z - u_z * v_y, u_z * v_x - u_x * v_z, u_x * v_y - v_x * u_y]
+
+
+def get_angle_between_vectors(u, v):
+    """ Returns angle between two vectors """
+    return math.acos(dot_product(u, v) / (vector_len(v) * vector_len(u)))
