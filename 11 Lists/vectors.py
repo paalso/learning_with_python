@@ -59,6 +59,11 @@ def cross_product(u, v):
     return [u_y * v_z - u_z * v_y, u_z * v_x - u_x * v_z, u_x * v_y - v_x * u_y]
 
 
+def get_cosinus_between_vectors(u, v):
+    """ Returns cosinus of the angle between two vectors """
+    return dot_product(u, v) / (vector_len(v) * vector_len(u))
+
+
 def get_angle_between_vectors(u, v):
-    """ Returns angle between two vectors """
+    """ Returns the angle between two vectors """
     return math.acos(dot_product(u, v) / (vector_len(v) * vector_len(u)))

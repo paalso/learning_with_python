@@ -6,7 +6,6 @@
 # Adapt the queens program so that we keep a list of solutions that have already
 # printed, so that we don’t print the same solution more than once.
 
-from testtools import test
 
 def share_diagonal(x0,y0,x1,y1):
     """ Is (x0, y0) on a shared diagonal with (x1, y1)? """
@@ -39,21 +38,23 @@ def main():
     rng = random.Random()   # Instantiate a generator
 
     different_positions = 4
-    size = 4
+    size = 6
     bd = list(range(size))
     solutions_list = []
+    solutions_counter = 0
 
     for i in range(different_positions):
         attempts = 0
+
         while(True):
             rng.shuffle(bd)
             attempts += 1
-            print(bd)
-##            print("{0}, {1}".format(bd, ))
+
             if not has_clashes(bd) and bd not in solutions_list:
-                solutions_list.append(bd)
-                print("Found next unique solution {0} in {1} attempts".\
-                    format(bd, attempts))
+                solutions_list.append(bd.copy())
+                solutions_counter += 1
+                print("Next unique solution # {0:2}: {1} in {2} attempts".\
+                    format(solutions_counter, bd, attempts))
                 break
 
 

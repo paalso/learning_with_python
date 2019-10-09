@@ -8,15 +8,14 @@
 # Copyright:   (c) PaulS 2019
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-from vectors import dot_product, sub_vectors, scalar_mult
+from vectors import *
 
 def main():
-    a = [3, 4, 5, 0]
-    b = [-5, 5, 10, 1]
-    c = [10, 1, 1, 5]
+    a = [7,1]
+    b = [2,3]
 
 	# 285
-    print (dot_product(sub_vectors(scalar_mult(5, a), scalar_mult(3, b)), c))
+    print (get_cosinus_between_vectors(a,b))
 
 
 if __name__ == '__main__':

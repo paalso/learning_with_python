@@ -38,7 +38,7 @@ def main():
     import random
     rng = random.Random()   # Instantiate a generator
 
-    different_positions = 1
+    different_positions = 8
     size = 10
     bd = list(range(size))
 
