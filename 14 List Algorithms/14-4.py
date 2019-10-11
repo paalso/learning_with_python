@@ -62,56 +62,49 @@ def main():
     import random
     rng = random.Random()   # Instantiate a generator
 
-    SIZE = 9
-    MAX_ATTEMPTS_QUOTIENT = 50
+    SIZE = 8
+    MAX_ATTEMPTS_QUOTIENT = 100
 
-    different_positions = 300
     bd = list(range(SIZE))
-    all_solutions = []
-    uniq_solutions = 0
+    all_solutions = set()
+    fundamentals = 0
     total_attempts = 0
     average_attempts = None
-    flag = False
 
-    for i in range(different_positions):
-        attempts = 0
+    attempts = 0
 
-        while(True):
-            rng.shuffle(bd)
-            attempts += 1
-            total_attempts += 1
+    while(True):
+        rng.shuffle(bd)
+        attempts += 1
+        total_attempts += 1
 
-            if average_attempts != None and \
-                        attempts % (10 * average_attempts) == 0:
-                print(f"{attempts} attempts, average = {average_attempts}")
+##        if average_attempts != None and \
+##                    attempts % (10 * average_attempts) == 0:
+##            print(f"{attempts} attempts, average = {average_attempts}")
 
-            if average_attempts != None and \
-                        attempts > MAX_ATTEMPTS_QUOTIENT * average_attempts:
-                flag = True
-                break
+        if average_attempts != None and \
+            attempts == MAX_ATTEMPTS_QUOTIENT * average_attempts:
+            break
 
-            if not has_clashes(bd) and bd not in all_solutions:
+        if not has_clashes(bd) and tuple(bd) not in all_solutions:
 
-                symmetry_group = [bd.copy()]
-                for trans in transformations:
-                    next_form = trans(bd)
-                    if next_form not in symmetry_group:
-                        symmetry_group.append(next_form)
+            symmetry_group = set()
+            symmetry_group.add(tuple(bd))
+            for trans in transformations:
+                next_form = trans(bd)
+                symmetry_group.add(tuple(next_form))
 
-                all_solutions.extend(symmetry_group.copy())
+            all_solutions |= symmetry_group
+            fundamentals += 1
 
-                uniq_solutions += 1
-                print("Next unique solution # {0:2}: {1} in {2} attempts".\
-                    format(uniq_solutions, bd, attempts), end=", ")
-                print(f"{len(symmetry_group)} solutions in the symmetry group")
-                average_attempts = total_attempts // uniq_solutions
+            print("Next unique solution # {0:2}: {1} in {2} attempts".\
+                format(fundamentals, bd, attempts), end=", ")
+            print(f"{len(symmetry_group)} solutions in the symmetry group")
+            average_attempts = total_attempts // fundamentals
 
-                break
 
-    print(f"Found {len(all_solutions)} solutions")
+    print(f"Found {len(all_solutions)} solutions, {fundamentals} fundanentals")
     print(f"{average_attempts} attempts per solution in average")
-    if flag: print("Special break")
-
 
 
 main()
