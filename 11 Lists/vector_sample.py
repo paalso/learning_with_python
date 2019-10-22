@@ -11,8 +11,8 @@
 from vectors import *
 
 def main():
-    a = [7,1]
-    b = [2,3]
+    a = [3,0,7]
+    b = [-4,7,-1]
 
 	# 285
     print (get_cosinus_between_vectors(a,b))
