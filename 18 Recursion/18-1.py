@@ -38,7 +38,7 @@ def main():
     t = turtle_helper.make_turtle("blue", 2, -200, 100)
     t.speed(0)
 
-    order = 3
+    order = 4
     koch_snowflake(t, order, 350)
 
     wn.mainloop()
