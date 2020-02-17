@@ -56,7 +56,7 @@ def main():
     t = turtle_helper.make_turtle("black", 2, -300, -200)
     t.speed(0)
 
-    sierpinski(t, 4, 550, 1)
+    sierpinski(t, 5, 550, 2)
 
     wn.mainloop()
 
