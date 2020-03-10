@@ -1,3 +1,6 @@
+# Chapter 21. Even more OOP
+# http://openbookproject.net/thinkcs/python/english3e/even_more_oop.html
+
 class MyTime:
 
     def __init__(self, hrs=0, mins=0, secs=0):
