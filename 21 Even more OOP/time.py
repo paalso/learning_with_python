@@ -30,9 +30,12 @@ class MyTime:
         """ Return True if I am strictly greater than time2 """
         return self.to_seconds() > time2.to_seconds()
 
+    def between(self, time1, time2):
+        return time1.to_seconds() <= self.to_seconds() <= time2.to_seconds()
+
 
 t1 = MyTime(1, 15, 42)
-##t2 = MyTime(3, 50, 30)
-t2 = MyTime(1, 15, 41)
-t3 = t1 - t2
-print(t3)
+t2 = MyTime(3, 50, 30)
+t = MyTime(2, 52, 4)
+print(t.between(t1, t2))
+print((t + MyTime(1,30,0)).between(t1, t2))
