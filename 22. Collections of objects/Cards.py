@@ -17,8 +17,12 @@ class Card:
         if self.suit > other.suit: return 1
         if self.suit < other.suit: return -1
         # Suits are the same... check ranks
-        if self.rank > other.rank: return 1
-        if self.rank < other.rank: return -1
+
+        self_rank = self.rank if self.rank != 1 else 14
+        other_rank = other.rank if other.rank != 1 else 14
+                                                # Modify cmp so that
+        if self_rank  > other_rank: return 1    # Aces are ranked
+        if self_rank < other_rank: return -1    # higher than Kings
         # Ranks are the same... it's a tie
         return 0
 
@@ -76,14 +80,16 @@ class Deck:
         return self.cards == []
 
 
-d = Deck()
+# Chapter 22. Collections of objects
+# http://openbookproject.net/thinkcs/python/english3e/collections.html
 
-print(d.is_empty())
+# Modify cmp so that Aces are ranked higher than Kings
 
-while(not d.is_empty()):
-    d.pop()
+card_two = Card(0, 2)
+card_ace = Card(0, 1)
+card_king = Card(0, 13)
+card_ace_2 = Card(0, 1)
 
-print(d)
-print(d.is_empty())
-
-
+print(card_ace.cmp(card_two))
+print(card_ace.cmp(card_king))
+print(card_ace.cmp(card_ace_2))
