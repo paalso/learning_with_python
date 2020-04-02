@@ -17,7 +17,6 @@ class Node:
         print(self.cargo, end=" ")
 
     def print_list(self):
-    # doesn't work with emty lists i.e self is None
         print('[',end='')
         node = self
         while node != None:
@@ -30,7 +29,7 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self, *items):
         self.length = 0
         self.head = None
 
@@ -47,15 +46,18 @@ class LinkedList:
 
     def add_first(self, cargo):
         node = Node(cargo)
-        node.next = self.head
+##        node.next = self.head     #зачем так?
+        node.next = None
         self.head = node
         self.length += 1
 
 
 llist = LinkedList()
 llist.print_list()
-
 llist.add_first(0)
 llist.print_list()
 
-llist.print_list()
+##n = Node()
+##print(n)
+##n.print_list()
+##n.print_backward()
