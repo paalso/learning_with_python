@@ -72,6 +72,6 @@ t2 = count_time(has_duplicates_native, data_col, 10000)
 t3 = count_time(has_duplicates_authors, data_col, 10000)
 
 print(f'My function time: {t1}')
-print(f'Native function time: {t2}')
+print(f'\'Native\' function time: {t2}')
 print(f'Author\'s function time: {t3}')
 # Кстати разные степени эффективности функций при разных наборах данных получаются
