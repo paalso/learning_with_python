@@ -51,25 +51,48 @@ def interlock_two_words(word1, word2):
     return ''.join(L)
 
 
-def main():
+def dislock_word_to_two(word):
+    L = list(word)
+    return (''.join(L[::2]), ''.join(L[1::2]))
 
+
+def dislock_word_to_three(word):
+    L = list(word)
+    return (''.join(L[::3]), ''.join(L[1::3]), ''.join(L[2::3]))
+
+
+def main():
+# Pretty good O(n * ln(n)) cversion.
     dict_filename = 'words.txt'
     words_list = load_words(dict_filename)
 
-    interlocked_words = []
+    interlocked2_words = []
+    interlocked3_words = []
 
-    for size in range(2, 10):
-        size_words = list(filter(lambda w: len(w) == size, words_list))
-        size_interlocked_words = []
-        print(f'Size = {size}, words: {len(size_words)}')
-        for word1 in size_words:
-            for word2 in size_words:
-                if in_bisect(interlock_two_words(word1, word2), words_list) > -1:
-                    size_interlocked_words.append((word1, word2, interlock_two_words(word1, word2)))
-        interlocked_words.extend(size_interlocked_words)
-        print(size_interlocked_words)
+    for word in words_list:
+        word1, word2 = dislock_word_to_two(word)
+        if in_bisect(word1, words_list) > -1 and \
+            in_bisect(word2, words_list) > -1:
+            interlocked2_words.append((word1, word2, word))
 
-    print(interlocked_words)
+        word1, word2, word3 = dislock_word_to_three(word)
+        if in_bisect(word1, words_list) > -1 and \
+            in_bisect(word2, words_list) > -1 and \
+            in_bisect(word3, words_list) > -1:
+            interlocked3_words.append((word1, word2, word3, word))
+
+
+    for word1, word2, word in interlocked2_words:
+        print(word1, word2, '->', word)
+
+    print('\n')
+
+    for word1, word2, word3, word in interlocked3_words:
+        print(word1, word2, word3, '->', word)
+
+    print()
+    print(f'Total {len(interlocked2_words)} two words interlocked combinations')
+    print(f'Total {len(interlocked3_words)} three words interlocked combinations')
 
 
 if __name__ == '__main__':

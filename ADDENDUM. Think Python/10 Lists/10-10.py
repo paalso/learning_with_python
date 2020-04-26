@@ -54,7 +54,6 @@ def in_bisect(word, words_list):
 def main():
     dict_filename = 'words_3000.txt'
     words_list = load_words(dict_filename)
-    words_list = load_words(dict_filename)
 
     test_words = (
         'a',

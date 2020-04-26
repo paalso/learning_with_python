@@ -52,7 +52,8 @@ def interlock_two_words(word1, word2):
 
 
 def main():
-
+# Плохая, негодная, тупая, медленная версия
+# Bad, inadequate, stupid, slow version.
     dict_filename = 'words.txt'
     words_list = load_words(dict_filename)
 

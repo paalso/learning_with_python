@@ -31,6 +31,7 @@ def main():
     import collections
 
     dict_filename = 'words_3000.txt'
+#    dict_filename = 'words.txt'
     words_list = load_words(dict_filename)
 
     lengths_dict = dict(collections.Counter(map(len, words_list)))
