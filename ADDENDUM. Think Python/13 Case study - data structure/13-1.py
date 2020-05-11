@@ -8,7 +8,7 @@ whitespace and punctuation from the words, and converts them to lowercase.
 def load_words(dict_filename):
     import string
     transtab = str.maketrans(string.punctuation, ' ' * len(string.punctuation))
-
+    # Надо бы как-нибудь правильно слова с апострфом обработать
     with open(dict_filename, 'r') as in_file:
         text = in_file.read().translate(transtab).lower()
 
@@ -28,12 +28,13 @@ def sort_dict(dictionary):
 
 
 def main():
-    filename = 'alice.txt'
+    filename = 'alice_in_wonderland.txt'
     words = load_words(filename)
     d = dict_from_list(words)
     words_number = len(d)
     print(f'Total number of words in the book : {len(words)}')
     print(f'Number of different words in the book : {len(d)}')
+    print(f'{words[:30]}')
 
 
 if __name__ == '__main__':
