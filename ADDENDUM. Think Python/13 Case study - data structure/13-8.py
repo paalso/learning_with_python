@@ -24,7 +24,7 @@ more sense?
 combine text from two or more books, the random text you generate will blend
 the vocabulary and phrases from the sources in interesting ways.
 Credit: This case study is based on an example
-Solution: http://thinkpython2.com/code/markov.py.
+Solution: http://thinkpython2.com/code/markov.py
 '''
 
 
@@ -76,7 +76,6 @@ def markov_processed_dict(wordslist, prefixlen=2):
     prefixlen: integer number of words in the prefix
 
     returns: map from prefix to list of possible suffixes.
-    import collections
     '''
     import collections
     suffix_map = collections.defaultdict(lambda : [])
@@ -94,15 +93,20 @@ def random_text(suffix_map, n=100):
     n: number of words to generate
     '''
     import random
-    # choose a random prefix (not weighted by frequency)
-    random_list = []
-    start = random.choice(list(suffix_map.keys()))
-    random_list.extend(start.split())
+    prefixes_list = list(suffix_map.keys())
+    prefixlen = len(prefixes_list[0].split())
 
-    for i in range(n - 2):
-        next_key = ' '.join(random_list[-2:])
+    # choose a random prefix (not weighted by frequency)
+    start = random.choice(prefixes_list)
+    random_list = start.split()
+
+    for i in range(n - prefixlen):
+        next_key = ' '.join(random_list[-prefixlen:])
+
+        # this situation is possible and must be handled
         if next_key not in suffix_map:
-            break
+            next_key = random.choice(prefixes_list)
+
         next_word = random.choice(suffix_map[next_key])
         random_list.append(next_word)
 
@@ -111,15 +115,15 @@ def random_text(suffix_map, n=100):
 
 def main():
     text_info = 'texts/emma.txt', '*END*THE SMALL PRINT!'
+    text_info = 'texts/alice_in_wonderland.txt', ''
     filename, start_marker = text_info
     wordslist = process_text(filename, start_marker, True)
-    print(wordslist)
 
 ##    L = ['nostrud', 'exercitation', 'ullamco', 'laboris', 'nisi', 'ut', 'asvsdav', 'ujnrrn']
 ##    markov_dict = markov_processed_dict(L)
 
-    markov_dict = markov_processed_dict(wordslist, 2)
-    print(random_text(markov_dict, 20))
+    markov_dict = markov_processed_dict(wordslist, 5)
+    print(random_text(markov_dict, 30))
 
 
 if __name__ == '__main__':
