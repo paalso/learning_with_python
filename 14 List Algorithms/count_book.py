@@ -79,9 +79,9 @@ print("There are {0} words in the book, the first 100 are\n{1}".
 
 dict = load_words_from_file('vocab.txt')
 
-t0 = time.clock()
+t0 = time.time()
 missing_words = find_unknown_words(dict, book_words)
-t1 = time.clock()
+t1 = time.time()
 
 print("There are {0} words in the book. Only {1} are unique.".
                       format(len(all_words), len(book_words)))

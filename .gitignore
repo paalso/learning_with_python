@@ -1,4 +1,10 @@
 alice_in_wonderland.txt
 vocab.txt
 words.txt
+words_3000.txt
+*.pickle
 __pycache__
+texts\
+dictionaries\
+texts/
+dictionaries/
