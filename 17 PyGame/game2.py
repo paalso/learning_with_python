@@ -4,7 +4,7 @@ import time
 def main():
 
     pygame.init()    # Prepare the PyGame module for use
-    main_surface = pygame.display.set_mode((960, 480))
+    main_surface = pygame.display.set_mode((480, 240))
 
     # Load an image to draw. Substitute your own.
     # PyGame handles gif, jpg, png, etc. image types.
@@ -15,7 +15,7 @@ def main():
 
     frame_count = 0
     frame_rate = 0
-    t0 = time.clock()
+    t0 = time.process_time()
 
     while True:
 
@@ -27,7 +27,7 @@ def main():
         # Do other bits of logic for the game here
         frame_count += 1
         if frame_count % 500 == 0:
-            t1 = time.clock()
+            t1 = time.process_time()
             frame_rate = 500 / (t1-t0)
             t0 = t1
 

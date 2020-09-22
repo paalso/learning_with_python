@@ -1,8 +1,9 @@
-import pygame
+import pygame, random
 
 def main():
     """ Set up the game and run the main game loop """
-    pygame.init()      # Prepare the pygame module for use
+    pygame.ini
+    t()      # Prepare the pygame module for use
     surface_sz = 480   # Desired physical surface size, in pixels.
 
     # Create surface of (width, height), and its window.
@@ -18,6 +19,17 @@ def main():
             break                   #   ... leave game loop
 
         # Update your game objects and data structures here...
+        if ev.type == pygame.MOUSEBUTTONDOWN:
+            some_color = (
+                random.randint(0, 255),
+                random.randint(0, 255),
+                random.randint(0, 255))
+
+            small_rect = (
+                random.randint(0, surface_sz // 2),
+                random.randint(0, surface_sz // 2),
+                random.randint(0, surface_sz // 2),
+                random.randint(0, surface_sz // 2))
 
         # We draw everything from scratch on each frame.
         # So first fill everything with the background color
