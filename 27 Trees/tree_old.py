@@ -8,18 +8,14 @@ class Tree:
         self.right = right
 
     def __str__(self):
-        return str(self.cargo)
-
-    def get_children(self):
-        return self.left, self.right
+        return f"{str(self.cargo)}, left: {self.left}, right: {self.right}"
 
 
 def total(tree):
     """ Sum of all the numeric cargos in the tree"""
-    if tree is None:
-        return 0
-    value = tree.cargo if type(tree.cargo) in (int, float) else 0
-    return value + total(tree.left) + total(tree.right)
+    if tree is None: return 0
+    cargo = float(tree.cargo) if type(tree.cargo) in (int, float) else 0
+    return cargo + total(tree.left) + total(tree.right)
 
 
 def print_tree(tree):
@@ -31,23 +27,22 @@ def print_tree(tree):
 
 def print_tree_postorder(tree):
     if tree is None: return
-    print_tree_postorder(tree.left)
-    print_tree_postorder(tree.right)
+    print_tree(tree.left)
+    print_tree(tree.right)
     print(tree.cargo, end=" ")
 
 
 def print_tree_inorder(tree):
     if tree is None: return
-    print_tree_inorder(tree.left)
+    print_tree(tree.left)
     print(tree.cargo, end=" ")
-    print_tree_inorder(tree.right)
+    print_tree(tree.right)
 
 
 def print_tree_indented(tree, level=0):
     if tree is None: return
     print_tree_indented(tree.left, level + 1)
-    print(" " * level, end="")
-    print(tree.cargo)
+    print("{}{}".format("  " * level, tree.cargo))
     print_tree_indented(tree.right, level + 1)
 
 
