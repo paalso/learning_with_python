@@ -1,27 +1,27 @@
-def draw_board(the_board):
-    import pygame
-    """ Draw a chess board with queens, from the_board. """
-    surface_sz = 480           # Proposed physical surface size.
-    colors = [(255, 0, 0), (0, 0, 0)]
-    ball = pygame.image.load("ball.png")
+import pygame
+
+
+def draw_board(
+        the_board, surface_sz=480,
+        colors=[(0, 0, 0), (255, 0, 0)]):
+    """ Draw a chess board with queens, from the_board.
+        Returns a surface with a chess board drawn on it """
+
+    board_size = len(the_board)
+    cell_sz = surface_sz // board_size
+    adjusted_sz = cell_sz * board_size
 
     pygame.init()
+    surface = pygame.display.set_mode((adjusted_sz, adjusted_sz))
 
-    n = len(the_board)
-    cell_sz = 480 // n
-    surface_sz = cell_sz * n
+    # Bottom right cell color = colors[0]
+    start_color_id = 0 if board_size % 2 else 1
+    for x in range(board_size):
+        for y in range(board_size):
+            color_id = (start_color_id + x + y) % 2
+            pygame.draw.rect(surface, colors[color_id],
+                    (x * cell_sz, y * cell_sz, cell_sz, cell_sz))
 
-    board = pygame.display.set_mode((surface_sz, surface_sz))
-    cell = (10, 10, cell_sz, cell_sz)
+    # Now that squares are drawn, draw the queens.
 
-    for i in range(n):
-        for j in range(n):
-            cell = (i * cell_sz, j * cell_sz ,cell_sz, cell_sz)
-            board.fill(colors[(i + j) % 2], cell)
-
-    # ball.width = cell_sz * 0.8    # так не работает
-    for (col, row) in enumerate(the_board):
-    # draw a queen at col, row...
-        board.blit(ball, (col * cell_sz, row * cell_sz))
-
-    return board
+    return surface
