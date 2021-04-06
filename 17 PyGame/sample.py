@@ -5,6 +5,8 @@ def main():
 
     pygame.init()    # Prepare the PyGame module for use
     main_surface = pygame.display.set_mode((480, 240))
+    clock = pygame.time.Clock()
+    FPS = 60
 
     # Load an image to draw. Substitute your own.
     # PyGame handles gif, jpg, png, etc. image types.
@@ -15,7 +17,7 @@ def main():
 
     frame_count = 0
     frame_rate = 0
-    t0 = time.process_time()
+    t0 = time.time()
 
     while True:
 
@@ -26,9 +28,9 @@ def main():
 
         # Do other bits of logic for the game here
         frame_count += 1
-        if frame_count % 500 == 0:
-            t1 = time.process_time()
-            frame_rate = 500 / (t1-t0)
+        if frame_count % 50 == 0:
+            t1 = time.time()
+            frame_rate = 50 / (t1-t0)
             t0 = t1
 
         # Completely redraw the surface, starting with background
@@ -48,6 +50,7 @@ def main():
 
         # Now that everything is drawn, put it on display!
         pygame.display.flip()
+        clock.tick(FPS)
 
     pygame.quit()
 
