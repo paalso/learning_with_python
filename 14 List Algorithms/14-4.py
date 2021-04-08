@@ -62,7 +62,7 @@ def main():
     import random
     rng = random.Random()   # Instantiate a generator
 
-    SIZE = 8
+    SIZE = 10
     MAX_ATTEMPTS_QUOTIENT = 100
 
     bd = list(range(SIZE))
