@@ -13,8 +13,7 @@ def evaluate_probabilities(experiments_number,
         poker_hands = pokerhand.PokerHand.deal_hands(
                 hands_number, cards_per_hand)
         for ph in poker_hands:
-            combination = ph.classify()
-            if combination:
+            for combination in ph.classify():
                 frequencies[combination] += 1
 
     dealing_number = experiments_number * hands_number
@@ -27,6 +26,8 @@ def evaluate_probabilities(experiments_number,
 def main():
     experiments_number = 10000
     hands_number, cards_per_hand = 7, 7
+    evaluate_probabilities(experiments_number,
+            hands_number, cards_per_hand)
 
     print("Probabilities of poker combinations (dealing with {} cards:)"
             .format(cards_per_hand))

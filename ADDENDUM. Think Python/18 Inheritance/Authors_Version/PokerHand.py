@@ -194,16 +194,7 @@ def main():
     # the label histogram: map from label to number of occurances
     lhist = Hist()
 
-    deck = PokerDeck()
-    deck.shuffle()
-
-    hands = deck.deal_hands(7, 7)
-    hand0 = hands[0]
-    print(hand0)
-    print(hand0.sets)
-
     # loop n times, dealing 7 hands per iteration, 7 cards each
-'''
     n = 10000
     for i in range(n):
         if i % 1000 == 0:
@@ -227,7 +218,7 @@ def main():
             continue
         p = total / freq
         print('%s happens one time in %.2f' % (label, p))
-'''
+
 
 if __name__ == '__main__':
     main()

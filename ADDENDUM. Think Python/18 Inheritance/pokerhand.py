@@ -147,9 +147,10 @@ class PokerHand(cards.Hand):
     })
 
     def classify(self):
-        for predicate in PokerHand.poker_hands.keys():
-            if predicate(self):
-                return PokerHand.poker_hands[predicate]
+        self.combinations = [PokerHand.poker_hands[predicate]
+                for predicate in PokerHand.poker_hands.keys()
+                if predicate(self)]
+        return self.combinations
 
     @classmethod
     def deal_hands(cls, hands_number, cards_per_hand):
