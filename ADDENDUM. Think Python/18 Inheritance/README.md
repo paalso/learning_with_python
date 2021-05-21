@@ -6,6 +6,7 @@ How to Think Like a Computer Scientist
 
 #####Exercises 18.2 - 18.3
 
+
 **Exercise 18.2.** Write a Deck method called deal_hands that takes two parameters, the number of hands and the number of cards per hand. It should create the appropriate number of Hand objects, deal the appropriate number of cards per hand, and return a list of Hands.
 
 **Exercise 18.3.** The following are the possible hands in poker, in increasing order of value and decreasing order of probability:
@@ -50,6 +51,8 @@ work correctly for “hands” that contain any number of cards (although 5 and 
 [Авторское решение задачи](https://github.com/AllenDowney/ThinkPython2/blob/master/code/PokerHandSoln.py)
 
 #####Version 1.0
+
+
 Задача решена, но не совсем так, как у автора. В предлагаемом решении классификация комбинаций сделана в соответсвии с авторской спецификацией:
 
 > Write a method named classify that figures out the highest-value classification for a hand and sets the label attribute accordingly. For example, a 7-card hand might contain a flush and a pair; it should be labeled “flush”

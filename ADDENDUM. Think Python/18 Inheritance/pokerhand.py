@@ -135,10 +135,7 @@ class PokerHand(cards.Hand):
                 return True
         return False
 
-    poker_hands_predicates = [has_straightflush, has_four, has_fullhouse,
-            has_flush, has_straight, has_three, has_twopair, has_pair]
-
-    poker_hands = {
+    poker_hands = collections.OrderedDict({
         has_straightflush: "Straight flush",
         has_four: "Four of a kind",
         has_fullhouse: "Full house",
@@ -147,10 +144,10 @@ class PokerHand(cards.Hand):
         has_three: "Three of a kind",
         has_twopair: "Two pair",
         has_pair: "One pair"
-    }
+    })
 
     def classify(self):
-        for predicate in PokerHand.poker_hands_predicates:
+        for predicate in PokerHand.poker_hands.keys():
             if predicate(self):
                 return PokerHand.poker_hands[predicate]
 
