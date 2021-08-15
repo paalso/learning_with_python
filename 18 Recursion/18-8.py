@@ -10,9 +10,9 @@
 def fib(n):
     if n < 2:
         return n
-    f_prev_prev = 0
-    f_prev = 1
-    for k in range(1, n):
+    f_prev_prev, f_prev = 0, 1
+
+    for _ in range(1, n):
         f = f_prev_prev + f_prev
         f_prev_prev, f_prev = f_prev, f
 
@@ -20,10 +20,8 @@ def fib(n):
 
 
 def main():
-    print(fib(2))
-    print(fib(3))
-    print(fib(10))
-    print(fib(200))
+    for n in 2, 3, 10, 35, 200:
+        print("fib({}) = {}".format(n, fib(n)))
 
 
 if __name__ == '__main__':

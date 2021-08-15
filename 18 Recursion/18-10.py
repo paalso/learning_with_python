@@ -24,8 +24,7 @@ def get_files_list(path):
     the subdirectories, excluding directories
     """
     fileslist = []
-    dirlist = get_dirlist(path)
-    for f in dirlist:
+    for f in get_dirlist(path):
         full_name = os.path.join(path, f)
         if os.path.isdir(full_name):
             fileslist.extend(get_files_list(full_name))
@@ -35,9 +34,9 @@ def get_files_list(path):
 
 
 def main():
-##    print(get_files_list('d:\Projects\_testdir'))
-    for f in get_files_list('d:\Projects\_testdir'):
-        print(f)
+    print(get_files_list(os.getcwd()))
+    print()
+    print("\n".join(get_files_list(os.getcwd())))
 
 
 if __name__ == '__main__':

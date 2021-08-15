@@ -35,11 +35,15 @@ def koch_snowflake(t, order, size):
 
 def main():
     wn = turtle_helper.make_window("lightgreen", "Koch's curve")
-    t = turtle_helper.make_turtle("blue", 2, -200, 100)
+
+    move_len = 600
+
+    t = turtle_helper.make_turtle("blue", 2, shape='classic')
+    turtle_helper.move(t, -move_len / 2, move_len / (2 * 3 ** 0.5))
     t.speed(0)
 
-    order = 4
-    koch_snowflake(t, order, 350)
+    order = 2
+    koch_snowflake(t, order, move_len)
 
     wn.mainloop()
 

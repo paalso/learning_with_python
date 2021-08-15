@@ -12,16 +12,18 @@ def koch(t, order, size):
         return
 
     for turn in (60, -120, 60, 0):
-        koch(t, order - 1, size // 3)
+        koch(t, order - 1, size / 3)
         t.left(turn)
 
 
 def main():
     wn = turtle_helper.make_window("lightgreen", "Koch's curve")
-    t = turtle_helper.make_turtle("blue", 2, -250, 0)
+
+    move_len = 600
+    t = turtle_helper.make_turtle("blue", 2, -move_len/2, 0, shape='classic')
     t.speed(0)
 
-    koch(t, 4, 600)
+    koch(t, 4, move_len)
 
     wn.mainloop()
 

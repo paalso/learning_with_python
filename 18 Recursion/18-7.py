@@ -9,18 +9,17 @@
 from testtools import test
 
 
-def flatten(nxc):
+def flatten(nxs):
     """
-       Returns a simple list containing all the values in a nested lis
+    Returns a simple list containing all the values in a nested list
     """
-    flattenned = []
-    for e in nxc:
-        if type(e) == type([]):
-            flattenned.extend(flatten(e))
+    flattened = []
+    for e in nxs:
+        if type(e) == list:
+            flattened.extend(flatten(e))
         else:
-            flattenned.append(e)
-
-    return flattenned
+            flattened.append(e)
+    return flattened
 
 
 def main():

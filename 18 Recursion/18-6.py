@@ -9,13 +9,13 @@
 from testtools import test
 
 
-def count(target, nxc):
+def count(target, nxs):
     """
-       Returns the number of occurrences of target in a nested list
+    Returns the number of occurrences of target in a nested list
     """
     counter = 0
-    for e in nxc:
-        if type(e) == type([]):
+    for e in nxs:
+        if type(e) == list:
             counter += count(target, e)
         else:
             if e == target:

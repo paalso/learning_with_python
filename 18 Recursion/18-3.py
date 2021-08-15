@@ -15,14 +15,12 @@ import turtle_helper
 
 
 def triangle(t, size):
-    for i in range(3):
+    for _ in range(3):
         t.forward(size)
         t.left(120)
 
 
 def sierpinski(t, order, size):
-    print(f'Order: {order}')
-
     if order == 0:
         triangle(t, size)
         return
@@ -40,11 +38,16 @@ def sierpinski(t, order, size):
 
 
 def main():
-    wn = turtle_helper.make_window("lightgreen", "Cesaro's curve")
-    t = turtle_helper.make_turtle("blue", 2, -300, -200)
+    wn = turtle_helper.make_window("lightgreen", "Koch's curve")
+
+    size = 650
+
+    t = turtle_helper.make_turtle("blue", 2, shape='classic')
+    turtle_helper.move(t, -size / 2, -size * 3 ** 0.5 / 4)
     t.speed(0)
 
-    sierpinski(t, 5, 550)
+    order = 5
+    sierpinski(t, order, size)
 
     wn.mainloop()
 
