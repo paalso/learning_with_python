@@ -7,41 +7,60 @@
 # the performance of this implementation to the ImprovedQueue for a range
 # of queue lengths.
 
+
 class Queue:
     def __init__(self):
+        """Initialize a new empty queue"""
         self.items = []
 
+    def insert(self, item):
+        """Add a new item to the queue"""
+        self.items.append(item)
+
+    def remove(self):
+        """Remove and return an item from the queue. The item that is returned
+        is the first one that was added"""
+        if not self.is_empty():
+            return self.items.pop(0)
+
     def is_empty(self):
-        return len(self.items) == 0
+        """Check whether the queue is empty"""
+        return self.items == []
 
-    def insert(self, cargo):    # O(1)
-        self.items.append(cargo)
-
-    def remove(self):   # O(n)
-        return self.items.pop(0)
-
-    def print(self):
-        print(' <- '.join(map(str, self.items)) + ' <-')
+    def __str__(self):
+        return "[{}]".format(", ".join(str(e) for e in self.items))
 
 
 def main():
+    print("Creating new Queue:")
     q = Queue()
+    print(q)
+
+    print("\nAdding new nodes (1, 2, 3) to the Queue:")
     q.insert(1)
-    q.print()
-
+    print(q)
     q.insert(2)
-    q.print()
-
+    print(q)
     q.insert(3)
-    q.print()
+    print(q)
 
-    print(q.remove())
-    q.print()
-    print(q.remove())
-    q.print()
-    print(q.remove())
-    q.print()
+    print("\nRemoving nodes from the Queue:")
+    print("removed node: {}".format(q.remove()))
+    print(q)
+    print("removed node: {}".format(q.remove()))
+    print(q)
+    print("removed node: {}".format(q.remove()))
+    print(q)
+    print("removed node: {}".format(q.remove()))
+    print(q)
+
+    print("\nAdding new nodes (999, 66, 'xxx', (1, 'z')) to the Queue:")
+    q.insert(999)
+    q.insert(66)
+    q.insert('xxx')
+    q.insert((1, 'z'))
+    print(q)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -11,27 +11,21 @@ class Node:
         return str(self.cargo)
 
 
-class Queue:
+class ImprovedQueue:
     def __init__(self):
-        """Initialize a new empty queue"""
-        self.head = None
+        self.head = self.tail = None
         self.size = 0
 
     def insert(self, cargo):
-        """Add a new item to the queue"""
         node = Node(cargo)
-        if self.is_empty():     # If list is empty the new node goes first else
-            self.head = node
+        if self.is_empty():
+            self.head = self.tail = node
         else:
-            current = self.head
-            while current.next:         # Find the last node in the list
-                current = current.next
-            current.next = node         # Append the new node
+            self.tail.next = node
+            self.tail = self.tail.next
         self.size += 1
 
     def remove(self):
-        """Remove and return an item from the queue. The item that is returned
-        is the first one that was added"""
         if not self.is_empty():
             self.size -= 1
             cargo = self.head.cargo
@@ -39,10 +33,10 @@ class Queue:
             current_head = self.head    # *
             self.head = self.head.next
             current_head.next = None    # *
-            return cargo
+            if self.is_empty():
+                self.tail = None
 
     def is_empty(self):
-        """Check whether the queue is empty"""
         return self.size == 0
 
     def __str__(self):
@@ -54,12 +48,14 @@ class Queue:
         return "[{}]".format(", ".join(tokens))
 
     def print_info(self):
-        print("queue: {}, head: {}, len: {}"
-            .format(self, self.head, self.size))
+        print("queue: {}, head: {}, tail: {}, len: {}"
+            .format(self, self.head, self.tail, self.size))
+
 
 def main():
+
     print("Creating new Queue:")
-    q = Queue()
+    q = ImprovedQueue()
     q.print_info()
 
     print("\nAdding new nodes (1, 2, 3) to the Queue:")

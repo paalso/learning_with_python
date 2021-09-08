@@ -5,8 +5,12 @@
 # ===========
 # Write an implementation of the Priority Queue ADT using a linked list.
 # You should keep the list sorted so that removal is a constant time operation.
-# ompare the performance of this implementation with the Python list
+# compare the performance of this implementation with the Python list
 # implementation.
+
+# Version 1
+# По-видимому, это не то, что имелось в виду (You should keep the list sorted
+# so that removal is a constant time operation) - поэтому см. Version 2
 
 import Queue
 
@@ -63,18 +67,18 @@ def main():
     q.insert(12)
     q.insert(12)
     q.insert(33)
-    q.print()
+    q.print_info()
 ##    print('Max: ', q.find_max(comp))
     print(q.remove(comp))
-    q.print()
+    q.print_info()
     print(q.remove(comp))
-    q.print()
+    q.print_info()
     print(q.remove(comp))
-    q.print()
+    q.print_info()
     print(q.remove(comp))
-    q.print()
+    q.print_info()
     print(q.remove(comp))
-    q.print()
+    q.print_info()
 
 
 if __name__ == '__main__':
