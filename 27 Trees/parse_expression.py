@@ -58,25 +58,41 @@ def get_number(tokens):
         tokens.pop(0)
         return tree
 
-def get_product(token):
+
+def get_product(tokens):
     """ Builds and returns an expression tree for products
     Assuming that get_number succeeds and returns a singleton tree, we assign
     the first operand to a. If the next character is *, we get the second
     number and build an expression tree with a, b, and the operator.
     If the next character is anything else, then we just return the leaf node
     with a """
+    a = get_number(tokens)
+    if get_token(tokens, "*"):
+        b = get_number(tokens)
+        return Tree("*", a, b)
+    return a
+
+##With a small change in get_product, we can handle an arbitrarily long product:
+##recursive version
+
+def get_product(token_list):
     pass
 
 
 
-token_list = [9, "*", 11, "end"]
+token_list = [2, "*", 3, "*", 5 , "*", 7, "end"]
 tree = get_product(token_list)
-print_tree_postorder(tree)  # 9 11 *
+print_tree_postorder(tree)  # 2 3 5 7 * * *
+
+##Next we will add the ability to parse sums. Again, we use a slightly
+##counter-intuitive definition of sum. For us, a sum can be a tree with + at
+##the root, a product on the left, and a sum on the right. Or, a sum can be just
+##a product.
+
+def get_sum(token_list):
+    pass
 
 
-token_list = [9, "+", 11, "end"]
-tree = get_product(token_list)
-print_tree_postorder(tree)   # 9
-9
-
-def f():
+token_list = [9, "*", 11, "+", 5, "*", 7, "end"]
+tree = get_sum(token_list)
+print_tree_postorder(tree)  # 9 11 * 5 7 * +
